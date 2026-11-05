@@ -3,7 +3,7 @@
 </div>
 
 # weepingwillow
-[![PyPI](https://img.shields.io/pypi/v/giverny.svg?color=darkgreen)](https://pypi.org/project/weepingwillow/)
+[![PyPI](https://img.shields.io/pypi/v/weepingwillow.svg?color=darkgreen)](https://pypi.org/project/weepingwillow/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-582913.svg)](https://opensource.org/license/apache-2-0)
 
 Library for uploading data to the [U.S. Disease Tracker](https://usdiseasetracker.org/).
