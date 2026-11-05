@@ -1,0 +1,75 @@
+# .github/workflows/publish-to-pypi.yml
+name: Publish weepingwillow packages to PyPI
+
+on:
+  release:
+    types: [published]  # only full releases, not pre-releases.
+  workflow_dispatch:  # allow manual test.
+
+jobs:
+  publish-to-pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: latest
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      
+      # configure PyPI repository for both packages.
+      - name: Configure Poetry for PyPI
+        run: |
+          poetry config pypi-token.pypi ${{ secrets.PYPI_API_TOKEN }}
+      
+      # build and publish weepingwillow package to PyPI.
+      - name: Install weepingwillow dependencies
+        run: |
+          cd weepingwillow
+          poetry install --only=main --no-root
+      
+      - name: Build weepingwillow package
+        run: |
+          cd weepingwillow
+          cp ../README.md .
+          cp ../LICENSE.txt .
+          poetry build
+          poetry check
+      
+      - name: Publish weepingwillow to PyPI
+        run: |
+          echo "Waiting 15 seconds to publish weepingwillow on PyPI..."
+          sleep 15
+          cd weepingwillow
+          echo "Publishing weepingwillow to PyPI..."
+          poetry publish
+          echo "✅ weepingwillow published to PyPI"
+      
+      # test installation from PyPI.
+      - name: Test installation from PyPI
+        run: |
+          echo "Waiting 120 seconds for package to be available on PyPI..."
+          sleep 120
+          
+          # test weepingwillow installation.
+          echo "Testing weepingwillow installation from PyPI..."
+          pip install weepingwillow
+          python -c "import weepingwillow; print('✅ weepingwillow import successful')" || echo "❌ weepingwillow import failed"
+          pip uninstall -y weepingwillow
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-dist-packages
+          path: |
+            weepingwillow/dist/
