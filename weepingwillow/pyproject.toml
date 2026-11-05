@@ -1,0 +1,31 @@
+[project]
+name = "weepingwillow"
+version = "1.1.1"
+description = "library to upload data to the U.S. Disease Tracker (USDT) project"
+authors = [
+    {name = "U.S. Disease Tracker Group"}
+]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development"
+]
+dependencies = [
+    "requests>=2.32.3,<3.0.0"
+]
+
+[[tool.poetry.packages]]
+include = "weepingwillow"
+from = "src"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+"Homepage" = "https://github.com/USDiseaseTracker/USDiseaseTracker-API"
+"Bug Tracker" = "https://github.com/USDiseaseTracker/USDiseaseTracker-API/issues"
+"Changelog" = "https://github.com/USDiseaseTracker/USDiseaseTracker-API/blob/main/CHANGELOG.md"
