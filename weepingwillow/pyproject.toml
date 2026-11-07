@@ -1,6 +1,6 @@
 [project]
 name = "weepingwillow"
-version = "1.1.1"
+version = "1.1.2"
 description = "library to upload data to the U.S. Disease Tracker (USDT) project"
 authors = [
     {name = "U.S. Disease Tracker Group"}

@@ -8,3 +8,8 @@
 
 Library for uploading data to the [U.S. Disease Tracker](https://usdiseasetracker.org/).
 
+## Instructions
+Generate a refresh token via the "API ACCESS" tab of the [U.S. Disease Tracker Upload Site](https://usdtupload.org), and save this token to a txt file. Download the [DEMO-USDT_API_push.ipynb](https://github.com/USDiseaseTracker/USDiseaseTracker-API/blob/main/DEMO-USDT_API_push.ipynb) notebook from the [USDT-API github](https://github.com/USDiseaseTracker/USDiseaseTracker-API).
+
+Specify the filepaths to your refresh token and data file in the DEMO notebook to upload your data file to the U.S. Disease Tracker project. 
+
